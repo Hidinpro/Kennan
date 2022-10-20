@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../test/cmake/../../../include/tools.h
+stdio.h
+-
+getch.h
+-
+string.h
+-
+stdbool.h
+-
+stdlib.h
+-
+unistd.h
+-
+
+/home/zhihzen/base/src/test/tools_test.c
+stdio.h
+-
+tools.h
+/home/zhihzen/base/src/test/tools.h
+

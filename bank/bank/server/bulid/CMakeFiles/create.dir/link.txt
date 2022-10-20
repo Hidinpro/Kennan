@@ -1,0 +1,1 @@
+gcc  -Wall -Werror -DDEBUG   CMakeFiles/create.dir/media/sf_Share/指针项目/bank/bank/server/src/create.c.o  -o create -lmsg -ltools 

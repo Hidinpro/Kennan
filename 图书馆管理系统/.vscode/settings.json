@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "operator_system.h": "c",
+        "signal.h": "c",
+        "admin_system.h": "c",
+        "stdlib.h": "c",
+        "student_system.h": "c"
+    }
+}

@@ -1,0 +1,7 @@
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/install.dir
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/list_install_components.dir
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/rebuild_cache.dir
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/client.dir
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/install/local.dir
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/install/strip.dir
+/media/sf_Share/指针项目/bank/bank/client/build/CMakeFiles/edit_cache.dir

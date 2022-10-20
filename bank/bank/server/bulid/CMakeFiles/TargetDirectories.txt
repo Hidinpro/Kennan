@@ -1,0 +1,16 @@
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/list_install_components.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/edit_cache.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/install.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/install/strip.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/login.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/install/local.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/destroy.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/take.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/server.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/create.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/unlock.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/modify.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/save.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/rebuild_cache.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/transf.dir
+/media/sf_Share/指针项目/bank/bank/server/bulid/CMakeFiles/query.dir

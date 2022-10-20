@@ -1,0 +1,1 @@
+gcc  -Wall -Werror   CMakeFiles/tree_test.dir/home/zhihzen/base/src/test/tree_test.c.o  -o tree_test  -L/home/zhihzen/base/src/test/cmake/../../../lib -lm -lcjson -ldsa -lmd5 -ltools -Wl,-rpath,/home/zhihzen/base/src/test/cmake/../../../lib: 

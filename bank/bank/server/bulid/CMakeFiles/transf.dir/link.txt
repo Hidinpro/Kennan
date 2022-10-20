@@ -1,0 +1,1 @@
+gcc  -Wall -Werror -DDEBUG   CMakeFiles/transf.dir/media/sf_Share/指针项目/bank/bank/server/src/transf.c.o  -o transf -lmsg -ltools 
