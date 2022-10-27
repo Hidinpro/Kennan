@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror  -shared -Wl,-soname,libsocket.so -o libsocket.so CMakeFiles/socket.dir/home/zhihzen/base/src/socket/udp_socket.c.o CMakeFiles/socket.dir/home/zhihzen/base/src/socket/tcp_socket.c.o 

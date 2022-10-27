@@ -1,0 +1,7 @@
+/home/zhihzen/base/src/socket/build/CMakeFiles/install.dir
+/home/zhihzen/base/src/socket/build/CMakeFiles/list_install_components.dir
+/home/zhihzen/base/src/socket/build/CMakeFiles/rebuild_cache.dir
+/home/zhihzen/base/src/socket/build/CMakeFiles/socket.dir
+/home/zhihzen/base/src/socket/build/CMakeFiles/install/local.dir
+/home/zhihzen/base/src/socket/build/CMakeFiles/install/strip.dir
+/home/zhihzen/base/src/socket/build/CMakeFiles/edit_cache.dir

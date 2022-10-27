@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror -g  -shared -Wl,-soname,libtcp.so -o libtcp.so CMakeFiles/tcp.dir/__/tcp_socket.c.o 

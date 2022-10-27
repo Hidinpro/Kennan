@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror -g  -shared -Wl,-soname,liblog.so -o liblog.so CMakeFiles/log.dir/__/log.c.o 

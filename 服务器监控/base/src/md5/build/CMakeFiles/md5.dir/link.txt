@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror  -shared -Wl,-soname,libmd5.so -o libmd5.so CMakeFiles/md5.dir/home/zhihzen/base/src/md5/md5.c.o 

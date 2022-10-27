@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/pool/threadpool.c
+stdlib.h
+-
+threadpool.h
+/home/zhihzen/base/src/pool/threadpool.h
+
+/home/zhihzen/base/src/pool/threadpool.h
+pthread.h
+-
+queue.h
+-
+

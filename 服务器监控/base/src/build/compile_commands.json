@@ -1,0 +1,82 @@
+[
+{
+  "directory": "/home/zhihzen/base/src/build/monitor/cmake",
+  "command": "gcc  -Dmonitored_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/monitored.dir/__/monitored.c.o   -c /home/zhihzen/base/src/monitor/monitored.c",
+  "file": "/home/zhihzen/base/src/monitor/monitored.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/monitor/cmake",
+  "command": "gcc  -Dmonitor_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/monitor.dir/__/monitor.c.o   -c /home/zhihzen/base/src/monitor/monitor.c",
+  "file": "/home/zhihzen/base/src/monitor/monitor.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/socket/cmake",
+  "command": "gcc  -Dsocket_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/socket.dir/__/udp_socket.c.o   -c /home/zhihzen/base/src/socket/udp_socket.c",
+  "file": "/home/zhihzen/base/src/socket/udp_socket.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/socket/cmake",
+  "command": "gcc  -Dsocket_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/socket.dir/__/tcp_socket.c.o   -c /home/zhihzen/base/src/socket/tcp_socket.c",
+  "file": "/home/zhihzen/base/src/socket/tcp_socket.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/tools/cmake",
+  "command": "gcc  -Dtools_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/tools.dir/__/tools.c.o   -c /home/zhihzen/base/src/tools/tools.c",
+  "file": "/home/zhihzen/base/src/tools/tools.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/json/cmake",
+  "command": "gcc  -Dcjson_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/cjson.dir/__/cJSON.c.o   -c /home/zhihzen/base/src/json/cJSON.c",
+  "file": "/home/zhihzen/base/src/json/cJSON.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/md5/cmake",
+  "command": "gcc  -Dmd5_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/md5.dir/__/md5.c.o   -c /home/zhihzen/base/src/md5/md5.c",
+  "file": "/home/zhihzen/base/src/md5/md5.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/dsa/cmake",
+  "command": "gcc  -Ddsa_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/dsa.dir/__/tree.c.o   -c /home/zhihzen/base/src/dsa/tree.c",
+  "file": "/home/zhihzen/base/src/dsa/tree.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/dsa/cmake",
+  "command": "gcc  -Ddsa_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/dsa.dir/__/list.c.o   -c /home/zhihzen/base/src/dsa/list.c",
+  "file": "/home/zhihzen/base/src/dsa/list.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/dsa/cmake",
+  "command": "gcc  -Ddsa_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/dsa.dir/__/sort.c.o   -c /home/zhihzen/base/src/dsa/sort.c",
+  "file": "/home/zhihzen/base/src/dsa/sort.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/dsa/cmake",
+  "command": "gcc  -Ddsa_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/dsa.dir/__/queue.c.o   -c /home/zhihzen/base/src/dsa/queue.c",
+  "file": "/home/zhihzen/base/src/dsa/queue.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/dsa/cmake",
+  "command": "gcc  -Ddsa_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/dsa.dir/__/stack.c.o   -c /home/zhihzen/base/src/dsa/stack.c",
+  "file": "/home/zhihzen/base/src/dsa/stack.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/dsa/cmake",
+  "command": "gcc  -Ddsa_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/dsa.dir/__/query.c.o   -c /home/zhihzen/base/src/dsa/query.c",
+  "file": "/home/zhihzen/base/src/dsa/query.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/log/cmake",
+  "command": "gcc  -Dlog_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/log.dir/__/log.c.o   -c /home/zhihzen/base/src/log/log.c",
+  "file": "/home/zhihzen/base/src/log/log.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/msg/cmake",
+  "command": "gcc  -Dmsg_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/msg.dir/__/msg_queue.c.o   -c /home/zhihzen/base/src/msg/msg_queue.c",
+  "file": "/home/zhihzen/base/src/msg/msg_queue.c"
+},
+{
+  "directory": "/home/zhihzen/base/src/build/pool/cmake",
+  "command": "gcc  -Dpool_EXPORTS  -Wall -Werror -g -fPIC   -std=gnu99 -o CMakeFiles/pool.dir/__/threadpool.c.o   -c /home/zhihzen/base/src/pool/threadpool.c",
+  "file": "/home/zhihzen/base/src/pool/threadpool.c"
+}
+]

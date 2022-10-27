@@ -1,0 +1,7 @@
+/home/zhihzen/base/src/dsa/build/CMakeFiles/install.dir
+/home/zhihzen/base/src/dsa/build/CMakeFiles/list_install_components.dir
+/home/zhihzen/base/src/dsa/build/CMakeFiles/rebuild_cache.dir
+/home/zhihzen/base/src/dsa/build/CMakeFiles/dsa.dir
+/home/zhihzen/base/src/dsa/build/CMakeFiles/install/local.dir
+/home/zhihzen/base/src/dsa/build/CMakeFiles/install/strip.dir
+/home/zhihzen/base/src/dsa/build/CMakeFiles/edit_cache.dir

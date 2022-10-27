@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/log/log.c
+stdio.h
+-
+stdarg.h
+-
+pthread.h
+-
+log.h
+/home/zhihzen/base/src/log/log.h
+
+/home/zhihzen/base/src/log/log.h
+stdio.h
+-
+stdint.h
+-
+

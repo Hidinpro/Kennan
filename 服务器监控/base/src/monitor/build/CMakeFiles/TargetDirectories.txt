@@ -1,0 +1,8 @@
+/home/zhihzen/base/src/monitor/build/CMakeFiles/list_install_components.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/rebuild_cache.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/install.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/monitored.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/monitor.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/install/local.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/edit_cache.dir
+/home/zhihzen/base/src/monitor/build/CMakeFiles/install/strip.dir

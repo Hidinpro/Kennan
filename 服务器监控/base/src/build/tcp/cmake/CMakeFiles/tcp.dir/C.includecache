@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/tcp/tcp_socket.c
+stdlib.h
+-
+string.h
+-
+assert.h
+-
+unistd.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+arpa/inet.h
+-
+tcp_socket.h
+/home/zhihzen/base/src/tcp/tcp_socket.h
+
+/home/zhihzen/base/src/tcp/tcp_socket.h
+stdio.h
+-
+stdint.h
+-
+netinet/in.h
+-
+
