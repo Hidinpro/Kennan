@@ -1,0 +1,22 @@
+CC=gcc
+STD=-std=gnu99
+FLAG=-Wall -Werror
+TARGE=market
+OBJECT=main.o tools.o manager.o logistics.o sale.o score.o login_menus.o administrators.o
+
+$(TARGE):$(OBJECT)
+	$(CC) $(OBJECT) -o $(TARGE)
+
+main.o:%.o:%.c main.c operator_system.h
+	$(CC) $(STD) $(FLAG) -c $<
+
+tools.o:%.o:%.c tools.c tools.h
+	$(CC) $(STD) $(FLAG) -c $<
+
+operator_system.o:operator_system.c operator_system.h tools.h
+	$(CC) $(STD) $(FLAG) -c $<
+
+clean:
+	rm -rf $(OBJECT) $(TARGE)
+	rm -rf .h.gch
+

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "bank.h": "c",
+        "create.h": "c",
+        "client_logon.h": "c"
+    }
+}

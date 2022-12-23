@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../test/cmake/../../../include/md5.h
+
+/home/zhihzen/base/src/test/md5_test.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+errno.h
+-
+md5.h
+/home/zhihzen/base/src/test/md5.h
+

@@ -1,0 +1,17 @@
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/list_install_components.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/edit_cache.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/install.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/install/strip.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/login.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/install/local.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/destroy.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/take.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/create_oper.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/server.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/create.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/unlock.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/modify.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/save.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/rebuild_cache.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/transf.dir
+/media/sf_Share/指针项目/bank_v3/bank/server/build/CMakeFiles/query.dir

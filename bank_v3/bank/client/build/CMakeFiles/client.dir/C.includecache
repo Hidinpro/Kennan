@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/sf_Share/指针项目/bank_v3/bank/client/src/bank.h
+
+/media/sf_Share/指针项目/bank_v3/bank/client/src/client.c
+stdio.h
+-
+stdlib.h
+-
+stdbool.h
+-
+tools.h
+-
+tcp_socket.h
+-
+client_logon.h
+/media/sf_Share/指针项目/bank_v3/bank/client/src/client_logon.h
+
+/media/sf_Share/指针项目/bank_v3/bank/client/src/client_logon.c
+stdio.h
+-
+tools.h
+-
+tcp_socket.h
+-
+client_logon.h
+/media/sf_Share/指针项目/bank_v3/bank/client/src/client_logon.h
+
+/media/sf_Share/指针项目/bank_v3/bank/client/src/client_logon.h
+bank.h
+/media/sf_Share/指针项目/bank_v3/bank/client/src/bank.h
+

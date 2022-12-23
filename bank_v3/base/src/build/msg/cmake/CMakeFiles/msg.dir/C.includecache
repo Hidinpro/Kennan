@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/msg/msg_queue.c
+msg_queue.h
+/home/zhihzen/base/src/msg/msg_queue.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+assert.h
+-
+sys/msg.h
+-
+
+/home/zhihzen/base/src/msg/msg_queue.h
+sys/types.h
+-
+sys/ipc.h
+-
+

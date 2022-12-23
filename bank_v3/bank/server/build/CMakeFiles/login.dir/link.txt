@@ -1,0 +1,1 @@
+gcc  -Wall -Werror -DDEBUG   CMakeFiles/login.dir/media/sf_Share/指针项目/bank_v3/bank/server/src/login.c.o  -o login -lmsg -ltools 

@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/sf_Share/指针项目/bank_v3/bank/server/src/bank.h
+
+/media/sf_Share/指针项目/bank_v3/bank/server/src/transf.c
+stdio.h
+-
+limits.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+unistd.h
+-
+tools.h
+-
+msg_queue.h
+-
+bank.h
+/media/sf_Share/指针项目/bank_v3/bank/server/src/bank.h
+

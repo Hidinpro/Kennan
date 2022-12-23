@@ -1,0 +1,1 @@
+gcc  -Wall -Werror -DDEBUG   CMakeFiles/client.dir/media/sf_Share/指针项目/bank_v3/bank/client/src/client.c.o CMakeFiles/client.dir/media/sf_Share/指针项目/bank_v3/bank/client/src/client_logon.c.o  -o client -lsocket -ltools 
