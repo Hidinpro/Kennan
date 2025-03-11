@@ -1,0 +1,3 @@
+/home/lkn/work/WorkSpaceGit/Onvif/discovery/Bulid/CMakeFiles/Demo.dir
+/home/lkn/work/WorkSpaceGit/Onvif/discovery/Bulid/CMakeFiles/edit_cache.dir
+/home/lkn/work/WorkSpaceGit/Onvif/discovery/Bulid/CMakeFiles/rebuild_cache.dir

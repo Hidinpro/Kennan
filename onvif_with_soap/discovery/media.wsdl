@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../ver20/util/onvif-wsdl-viewer.xsl"?>
+<!--
+Copyright (c) 2008-2012 by ONVIF: Open Network Video Interface Forum. All rights reserved.
+
+Recipients of this document may copy, distribute, publish, or display this document so long as this copyright notice, license and disclaimer are retained with all copies of the document. No license is granted to modify this document.
+
+THIS DOCUMENT IS PROVIDED "AS IS," AND THE CORPORATION AND ITS MEMBERS AND THEIR AFFILIATES, MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THIS DOCUMENT ARE SUITABLE FOR ANY PURPOSE; OR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+IN NO EVENT WILL THE CORPORATION OR ITS MEMBERS OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE OR CONSEQUENTIAL DAMAGES, ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THIS DOCUMENT, WHETHER OR NOT (1) THE CORPORATION, MEMBERS OR THEIR AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, OR (2) SUCH DAMAGES WERE REASONABLY FORESEEABLE, AND ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THIS DOCUMENT.  THE FOREGOING DISCLAIMER AND LIMITATION ON LIABILITY DO NOT APPLY TO, INVALIDATE, OR LIMIT REPRESENTATIONS AND WARRANTIES MADE BY THE MEMBERS AND THEIR RESPECTIVE AFFILIATES TO THE CORPORATION AND OTHER MEMBERS IN CERTAIN WRITTEN POLICIES OF THE CORPORATION.
+-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:trt="http://www.onvif.org/ver10/media/wsdl" targetNamespace="http://www.onvif.org/ver10/media/wsdl">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.onvif.org/ver10/media/wsdl" xmlns:tt="http://www.onvif.org/ver10/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="2.4.1">
+			<xs:import namespace="http://www.onvif.org/ver10/schema" schemaLocation="./onvif.xsd"/>
+			<!--  Message Request/Responses elements  -->
+			<!--===============================-->
+			<xs:element name="GetServiceCapabilities">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetServiceCapabilitiesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Capabilities" type="trt:Capabilities">
+							<xs:annotation>
+								<xs:documentation>The capabilities for the media service is returned in the Capabilities element.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--===============================-->
+			<xs:complexType name="Capabilities">
+				<xs:sequence>
+					<xs:element name="ProfileCapabilities" type="trt:ProfileCapabilities">
+						<xs:annotation>
+							<xs:documentation>Media profile capabilities.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="SnapshotUri" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>Indicates if GetSnapshotUri is supported.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>				
+			</xs:complexType>
+			<xs:element name="Capabilities" type="trt:Capabilities"/>
+			<!--===============================-->
+			<xs:complexType name="ProfileCapabilities">
+				<xs:sequence>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="MaximumNumberOfProfiles" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>Maximum number of profiles supported.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute processContents="lax"/>
+			</xs:complexType>
+			<!--===============================-->
+			<xs:element name="CreateProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="tt:Name">
+							<xs:annotation>
+								<xs:documentation>friendly name of the profile to be created</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Token" type="tt:ReferenceToken" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Optional token, specifying the unique identifier of the new profile. <br/>A device supports at least a token length of 12 characters and characters "A-Z" | "a-z" | "0-9" | "-.".</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Profile" type="tt:Profile">
+							<xs:annotation>
+								<xs:documentation>returns the new created profile</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--===============================-->
+			<xs:element name="GetProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ProfileToken" type="tt:ReferenceToken">
+							<xs:annotation>
+								<xs:documentation>this command requests a specific profile</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Profile" type="tt:Profile">
+							<xs:annotation>
+								<xs:documentation>returns the requested media profile</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--===============================-->
+			<xs:element name="GetProfiles">
+				<xs:complexType>
+					<xs:sequence>
+				
+      </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetProfilesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Profiles" type="tt:Profile" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>lists all profiles that exist in the media service </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--===============================-->
+			<xs:element name="DeleteProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ProfileToken" type="tt:ReferenceToken">
+							<xs:annotation>
+								<xs:documentation>This element contains a  reference to the profile that should be deleted.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+          </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--===============================-->
+			<xs:element name="GetSnapshotUri">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ProfileToken" type="tt:ReferenceToken">
+							<xs:annotation>
+								<xs:documentation>The ProfileToken element indicates the media profile to use and will define the source and dimensions of the snapshot.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSnapshotUriResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MediaUri" type="tt:MediaUri">
+							<xs:annotation>
+								<xs:documentation/>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--===============================-->
+
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="GetServiceCapabilitiesRequest">
+		<wsdl:part name="parameter" element="trt:GetServiceCapabilities"/>
+	</wsdl:message>
+	<wsdl:message name="GetServiceCapabilitiesResponse">
+		<wsdl:part name="parameter" element="trt:GetServiceCapabilitiesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateProfileRequest">
+		<wsdl:part name="parameters" element="trt:CreateProfile"/>
+	</wsdl:message>
+	<wsdl:message name="CreateProfileResponse">
+		<wsdl:part name="parameters" element="trt:CreateProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetProfileRequest">
+		<wsdl:part name="parameters" element="trt:GetProfile"/>
+	</wsdl:message>
+	<wsdl:message name="GetProfileResponse">
+		<wsdl:part name="parameters" element="trt:GetProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetProfilesRequest">
+		<wsdl:part name="parameters" element="trt:GetProfiles"/>
+	</wsdl:message>
+	<wsdl:message name="GetProfilesResponse">
+		<wsdl:part name="parameters" element="trt:GetProfilesResponse"/>
+	</wsdl:message>
+		<wsdl:message name="GetSnapshotUriRequest">
+		<wsdl:part name="parameters" element="trt:GetSnapshotUri"/>
+	</wsdl:message>
+	<wsdl:message name="GetSnapshotUriResponse">
+		<wsdl:part name="parameters" element="trt:GetSnapshotUriResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="Media">
+		<!--===============================-->
+		<wsdl:operation name="GetServiceCapabilities">
+			<wsdl:documentation>Returns the capabilities of the media service. The result is returned in a typed answer.</wsdl:documentation>
+			<wsdl:input message="trt:GetServiceCapabilitiesRequest"/>
+			<wsdl:output message="trt:GetServiceCapabilitiesResponse"/>
+		</wsdl:operation>
+		<!--===============================-->
+		<wsdl:operation name="CreateProfile">
+			<wsdl:documentation>This operation creates a new empty media profile. The media profile shall be created in the
+device and shall be persistent (remain after reboot). A created profile shall be deletable and a device shall set the “fixed” attribute to false in the
+returned Profile.</wsdl:documentation>
+			<wsdl:input message="trt:CreateProfileRequest"/>
+			<wsdl:output message="trt:CreateProfileResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetProfile">
+			<wsdl:documentation>If the profile token is already known, a profile can be fetched through the GetProfile command.</wsdl:documentation>
+			<wsdl:input message="trt:GetProfileRequest"/>
+			<wsdl:output message="trt:GetProfileResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetProfiles">
+			<wsdl:documentation>Any endpoint can ask for the existing media profiles of a device using the GetProfiles
+command. Pre-configured or dynamically configured profiles can be retrieved using this
+command. This command lists all configured profiles in a device. The client does not need to
+know the media profile in order to use the command.</wsdl:documentation>
+			<wsdl:input message="trt:GetProfilesRequest"/>
+			<wsdl:output message="trt:GetProfilesResponse"/>
+		</wsdl:operation>
+				<wsdl:operation name="GetSnapshotUri">
+			<wsdl:documentation>A client uses the GetSnapshotUri command to obtain a JPEG snapshot from the
+device. The returned URI shall remain valid indefinitely even if the profile is changed. The
+ValidUntilConnect, ValidUntilReboot and Timeout Parameter shall be set accordingly
+(ValidUntilConnect=false, ValidUntilReboot=false, timeout=PT0S). The URI can be used for
+acquiring a JPEG image through a HTTP GET operation. The image encoding will always be
+JPEG regardless of the encoding setting in the media profile. The Jpeg settings
+(like resolution or quality) may be taken from the profile if suitable. The provided
+image will be updated automatically and independent from calls to GetSnapshotUri.</wsdl:documentation>
+			<wsdl:input message="trt:GetSnapshotUriRequest"/>
+			<wsdl:output message="trt:GetSnapshotUriResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MediaBinding" type="trt:Media">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!--===============================-->
+		<!--===============================-->
+		<wsdl:operation name="GetServiceCapabilities">
+			<soap:operation soapAction="http://www.onvif.org/ver10/media/wsdl/GetServiceCapabilities"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!--===============================-->
+		<wsdl:operation name="CreateProfile">
+			<soap:operation soapAction="http://www.onvif.org/ver10/media/wsdl/CreateProfile"/>
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!--===============================-->
+		<wsdl:operation name="GetProfile">
+			<soap:operation soapAction="http://www.onvif.org/ver10/media/wsdlGetProfile/"/>
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<!--===============================-->
+		<wsdl:operation name="GetProfiles">
+			<soap:operation soapAction="http://www.onvif.org/ver10/media/wsdl/GetProfiles"/>
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+				<!--===============================-->
+		<wsdl:operation name="GetSnapshotUri">
+			<soap:operation soapAction="http://www.onvif.org/ver10/media/wsdl/GetSnapshotUri"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+</wsdl:definitions>

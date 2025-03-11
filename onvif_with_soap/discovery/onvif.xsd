@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml-stylesheet type="text/xsl" href="onvif-schema-viewer.xsl"?>-->
+<!--
+Copyright (c) 2008-2012 by ONVIF: Open Network Video Interface Forum. All rights reserved.
+
+Recipients of this document may copy, distribute, publish, or display this document so long as this copyright notice, license and disclaimer are retained with all copies of the document. No license is granted to modify this document.
+
+THIS DOCUMENT IS PROVIDED "AS IS," AND THE CORPORATION AND ITS MEMBERS AND THEIR AFFILIATES, MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THIS DOCUMENT ARE SUITABLE FOR ANY PURPOSE; OR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+IN NO EVENT WILL THE CORPORATION OR ITS MEMBERS OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE OR CONSEQUENTIAL DAMAGES, ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THIS DOCUMENT, WHETHER OR NOT (1) THE CORPORATION, MEMBERS OR THEIR AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, OR (2) SUCH DAMAGES WERE REASONABLY FORESEEABLE, AND ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THIS DOCUMENT.  THE FOREGOING DISCLAIMER AND LIMITATION ON LIABILITY DO NOT APPLY TO, INVALIDATE, OR LIMIT REPRESENTATIONS AND WARRANTIES MADE BY THE MEMBERS AND THEIR RESPECTIVE AFFILIATES TO THE CORPORATION AND OTHER MEMBERS IN CERTAIN WRITTEN POLICIES OF THE CORPORATION.
+-->
+<xs:schema xmlns:tt="http://www.onvif.org/ver10/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="http://www.onvif.org/ver10/schema" elementFormDefault="qualified" version="2.4.1">
+	<xs:import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+	<xs:import namespace="http://schemas.xmlsoap.org/soap/envelope/" schemaLocation="http://schemas.xmlsoap.org/soap/envelope/"/>
+	<xs:import namespace="http://docs.oasis-open.org/wsn/b-2" schemaLocation="http://docs.oasis-open.org/wsn/b-2.xsd"/>
+	<xs:import namespace="http://www.w3.org/2004/08/xop/include" schemaLocation="http://www.w3.org/2004/08/xop/include"/>
+	<!--===============================-->
+	<!--         Generic Types         -->
+	<!--===============================-->
+	<xs:complexType name="DeviceEntity">
+		<xs:annotation>
+			<xs:documentation>Base class for physical entities like inputs and outputs.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="token" type="tt:ReferenceToken" use="required">
+			<xs:annotation>
+				<xs:documentation>Unique identifier referencing the physical entity.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:simpleType name="ReferenceToken">
+		<xs:annotation>
+			<xs:documentation>Unique identifier for a physical or logical resource.
+			Tokens should be assigned such that they are unique within a device. Tokens must be at least unique within its class.
+			Length up to 64 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="Name">
+		<xs:annotation>
+			<xs:documentation>User readable name. Length up to 64 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:complexType name="IntRectangle">
+		<xs:annotation>
+			<xs:documentation>Rectangle defined by lower left corner position and size. Units are pixel.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="x" type="xs:int" use="required"/>
+		<xs:attribute name="y" type="xs:int" use="required"/>
+		<xs:attribute name="width" type="xs:int" use="required"/>
+		<xs:attribute name="height" type="xs:int" use="required"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="IntRectangleRange">
+		<xs:annotation>
+			<xs:documentation>Range of a rectangle. The rectangle itself is defined by lower left corner position and size. Units are pixel.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="XRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Range of X-axis.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="YRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Range of Y-axis.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WidthRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Range of width.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HeightRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Range of height.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="IntRange">
+		<xs:annotation>
+			<xs:documentation>Range of values greater equal Min value and less equal Max value.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Min" type="xs:int"/>
+			<xs:element name="Max" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="FloatRange">
+		<xs:annotation>
+			<xs:documentation>Range of values greater equal Min value and less equal Max value.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Min" type="xs:float"/>
+			<xs:element name="Max" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="DurationRange">
+		<xs:annotation>
+			<xs:documentation>Range of duration greater equal Min duration and less equal Max duration.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Min" type="xs:duration"/>
+			<xs:element name="Max" type="xs:duration"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="IntList">
+		<xs:annotation>
+			<xs:documentation>List of values.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Items" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:simpleType name="IntAttrList">
+		<xs:list itemType="xs:int"/>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="FloatAttrList">
+		<xs:list itemType="xs:float"/>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="StringAttrList">
+		<xs:list itemType="xs:string"/>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:complexType name="FloatList">
+		<xs:sequence>
+			<xs:element name="Items" type="xs:float" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="AnyHolder">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<!--      End, Generic Types       -->
+	<!--===============================-->
+	<!--===============================-->
+	<!--===============================-->
+	<!--      Media Related Types      -->
+	<!--===============================-->
+	<xs:complexType name="Profile">
+		<xs:annotation>
+			<xs:documentation>
+			A media profile consists of a set of media configurations. Media profiles are used by a client
+			to configure properties of a media stream from an NVT.<br/>
+			An NVT shall provide at least one media profile at boot. An NVT should provide “ready to use”
+			profiles for the most common media configurations that the device offers.<br/>
+			A profile consists of a set of interconnected configuration entities. Configurations are provided
+			by the NVT and can be either static or created dynamically by the NVT. For example, the
+			dynamic configurations can be created by the NVT depending on current available encoding
+			resources.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="tt:Name">
+				<xs:annotation>
+					<xs:documentation>User readable name of the profile.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VideoEncoderConfiguration" type="tt:VideoEncoderConfiguration" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional configuration of the Video encoder.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="token" type="tt:ReferenceToken" use="required">
+			<xs:annotation>
+				<xs:documentation>Unique identifier of the profile.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fixed" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>A value of true signals that the profile cannot be deleted. Default is false.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+    <xs:element name="VideoEncoderConfiguration" type="tt:VideoEncoderConfiguration"/>
+	<!--===============================-->
+	<xs:complexType name="ConfigurationEntity">
+		<xs:annotation>
+			<xs:documentation>Base type defining the common properties of a configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="tt:Name">
+				<xs:annotation>
+					<xs:documentation>User readable name. Length up to 64 characters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UseCount" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Number of internal references currently using this configuration. <br/>This parameter is read-only and cannot be changed by a set request. <br/>For example the value increases if the configuration is added to a media profile or attached to a PaneConfiguration.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="token" type="tt:ReferenceToken" use="required">
+			<xs:annotation>
+				<xs:documentation>Token that uniquely refernces this configuration. Length up to 64 characters.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--===============================-->
+	<!--   End, Media Related Types    -->
+	<!--===============================-->
+	<!--===============================-->
+	<!--   Capabilities Related Types  -->
+	<!--===============================-->
+	<xs:simpleType name="CapabilityCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="All"/>
+			<xs:enumeration value="Device"/>
+			<xs:enumeration value="Events"/>
+			<xs:enumeration value="Media"/>
+			<xs:enumeration value="PTZ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:complexType name="Capabilities">
+		<xs:sequence>
+			<xs:element name="Device" type="tt:DeviceCapabilities" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Device capabilities</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Events" type="tt:EventCapabilities" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Event capabilities</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Media" type="tt:MediaCapabilities" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Media capabilities</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PTZ" type="tt:PTZCapabilities" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PTZ capabilities</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="DeviceCapabilities">
+		<xs:sequence>
+			<xs:element name="XAddr" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>Device service URI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="System" type="tt:SystemCapabilities" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>System capabilities.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="EventCapabilities">
+		<xs:sequence>
+			<xs:element name="XAddr" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>Event service URI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WSSubscriptionPolicySupport" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not WS Subscription policy is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WSPullPointSupport" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not WS Pull Point is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WSPausableSubscriptionManagerInterfaceSupport" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not WS Pausable Subscription Manager Interface is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="MediaCapabilities">
+		<xs:sequence>
+			<xs:element name="XAddr" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>Media service URI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StreamingCapabilities" type="tt:RealTimeStreamingCapabilities">
+				<xs:annotation>
+					<xs:documentation>Streaming capabilities.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Extension" type="tt:MediaCapabilitiesExtension" minOccurs="0"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="MediaCapabilitiesExtension">
+		<xs:sequence>
+			<xs:element name="ProfileCapabilities" type="tt:ProfileCapabilities"/>
+			<xs:any namespace="##targetNamespace" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="RealTimeStreamingCapabilities">
+		<xs:sequence>
+			<xs:element name="RTPMulticast" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not RTP multicast is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RTP_TCP" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not RTP over TCP is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RTP_RTSP_TCP" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not RTP/RTSP/TCP is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="ProfileCapabilities">
+		<xs:sequence>
+			<xs:element name="MaximumNumberOfProfiles" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Maximum number of profiles.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="SystemCapabilities">
+		<xs:sequence>
+			<xs:element name="DiscoveryResolve" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not WS Discovery resolve requests are supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscoveryBye" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not WS-Discovery Bye is supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupportedVersions" type="tt:OnvifVersion" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Indicates supported ONVIF version(s).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="OnvifVersion">
+		<xs:sequence>
+			<xs:element name="Major" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Major version number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Minor" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Two digit minor version number (e.g. X.0.1 maps to "01" and X.2.1 maps to "21" where X stands for Major version number).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="PTZCapabilities">
+		<xs:sequence>
+			<xs:element name="XAddr" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>PTZ service URI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<!--===============================-->
+	<!--End, Capabilities Related Types-->
+	<!--===============================-->
+	<!--===============================-->
+	<!--    Start PTZ Related Types    -->
+	<!--===============================-->
+	<xs:complexType name="PanTiltLimits">
+		<xs:sequence>
+			<xs:element name="Range" type="tt:Space2DDescription">
+				<xs:annotation>
+					<xs:documentation>
+            A range of pan tilt limits.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="ZoomLimits">
+		<xs:sequence>
+			<xs:element name="Range" type="tt:Space1DDescription">
+				<xs:annotation>
+					<xs:documentation>
+            A range of zoom limit
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="PTZSpaces">
+		<xs:sequence>
+			<xs:element name="ContinuousPanTiltVelocitySpace" type="tt:Space2DDescription" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+            The generic Pan/Tilt velocity space shall be provided by every PTZ node, since it does not relate to a specific physical range. 
+			Instead, the range should be defined as a range of the PTZ unit’s speed normalized to the range -1 to 1, where a positive velocity would map to clockwise 
+			rotation or movement in the right/up direction. A signed speed can be independently specified for the pan and tilt component resulting in the following space description.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContinuousZoomVelocitySpace" type="tt:Space1DDescription" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+            The generic zoom velocity space specifies a zoom factor velocity without knowing the underlying physical model. The range should be normalized from -1 to 1, 
+			where a positive velocity would map to TELE direction. A generic zoom velocity space description resembles the following.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PanTiltSpeedSpace" type="tt:Space1DDescription" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+            The speed space specifies the speed for a Pan/Tilt movement when moving to an absolute position or to a relative translation. 
+			In contrast to the velocity spaces, speed spaces do not contain any directional information. The speed of a combined Pan/Tilt 
+			movement is represented by a single non-negative scalar value.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZoomSpeedSpace" type="tt:Space1DDescription" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+            The speed space specifies the speed for a Zoom movement when moving to an absolute position or to a relative translation. 
+			In contrast to the velocity spaces, speed spaces do not contain any directional information. 
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Space2DDescription">
+		<xs:sequence>
+			<xs:element name="URI" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>
+            A URI of coordinate systems.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XRange" type="tt:FloatRange">
+				<xs:annotation>
+					<xs:documentation>
+            A range of x-axis.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="YRange" type="tt:FloatRange">
+				<xs:annotation>
+					<xs:documentation>
+            A range of y-axis.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Space1DDescription">
+		<xs:sequence>
+			<xs:element name="URI" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>
+            A URI of coordinate systems.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XRange" type="tt:FloatRange">
+				<xs:annotation>
+					<xs:documentation>
+            A range of x-axis.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Vector2D">
+		<xs:attribute name="x" type="xs:float" use="required"/>
+		<xs:attribute name="y" type="xs:float" use="required"/>
+		<xs:attribute name="space" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+  				Pan/tilt coordinate space selector. The following options are defined:<ul>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/PositionGenericSpace</li>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/TranslationGenericSpace</li>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/VelocityGenericSpace</li>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/GenericSpeedSpace</li>
+					</ul>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Vector1D">
+		<xs:attribute name="x" type="xs:float" use="required"/>
+		<xs:attribute name="space" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+  				Pan/tilt coordinate space selector. The following options are defined:<ul style="">
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/PositionGenericSpace</li>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/TranslationGenericSpace</li>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/VelocityGenericSpace</li>
+						<li> http://www.onvif.org/ver10/tptz/PanTiltSpaces/GenericSpeedSpace</li>
+					</ul>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="PTZVector">
+		<xs:sequence>
+			<xs:element name="PanTilt" type="tt:Vector2D" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pan and tilt position. The x component corresponds to pan and the y component to tilt.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Zoom" type="tt:Vector1D" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+            A zoom position.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="PTZSpeed">
+		<xs:sequence>
+			<xs:element name="PanTilt" type="tt:Vector2D" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pan and tilt speed. The x component corresponds to pan and the y component to tilt. If omitted in a request, the current (if any) PanTilt movement should not be affected. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Zoom" type="tt:Vector1D" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+            A zoom speed. If omitted in a request, the current (if any) Zoom movement should not be affected.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="PTZPreset">
+		<xs:sequence>
+			<xs:element name="Name" type="tt:Name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+            A list of preset position name.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PTZPosition" type="tt:PTZVector" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+            A list of preset position.
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="token" type="tt:ReferenceToken">
+			<xs:annotation>
+				<xs:documentation>
+        </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="PTZMoveStatus">
+		<xs:sequence>
+			<xs:element name="PanTilt" type="tt:MoveStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Zoom" type="tt:MoveStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:simpleType name="MoveStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IDLE"/>
+			<xs:enumeration value="MOVING"/>
+			<xs:enumeration value="UNKNOWN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<!--     End, PTZ Related Types    -->
+	<!--===============================-->
+
+	<!--===============================-->
+	<!--  Event and Analytics Types    -->
+	<!--===============================-->
+	<xs:simpleType name="TopicNamespaceLocation">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="PropertyOperation">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Initialized"/>
+			<xs:enumeration value="Deleted"/>
+			<xs:enumeration value="Changed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:element name="Message">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Source" type="tt:ItemList" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Token value pairs that triggered this message. Typically only one item is present.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Key" type="tt:ItemList" minOccurs="0"/>
+				<xs:element name="Data" type="tt:ItemList" minOccurs="0"/>
+				<xs:element name="Extension" type="tt:MessageExtension" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="UtcTime" type="xs:dateTime" use="required"/>
+			<xs:attribute name="PropertyOperation" type="tt:PropertyOperation"/>
+			<xs:anyAttribute processContents="lax"/>
+		</xs:complexType>
+	</xs:element>
+	<!--===============================-->
+	<xs:complexType name="MessageExtension">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="ItemList">
+		<xs:annotation>
+			<xs:documentation>
+			List of parameters according to the corresponding ItemListDescription.
+			Each item in the list shall have a unique name.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SimpleItem" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Value name pair as defined by the corresponding description.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Item name.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Value" type="xs:anySimpleType" use="required">
+						<xs:annotation>
+							<xs:documentation>Item value. The type is defined in the corresponding description.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElementItem" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Complex value structure.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any namespace="##any">
+							<xs:annotation>
+								<xs:documentation>XML tree contiaing the element value as defined in the corresponding description.</xs:documentation>
+							</xs:annotation>
+						</xs:any>
+					</xs:sequence>
+					<xs:attribute name="Name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Item name.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Extension" type="tt:ItemListExtension" minOccurs="0"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="ItemListExtension">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<!--       Message Description     -->
+	<!--===============================-->
+	<xs:complexType name="MessageDescription">
+		<xs:sequence>
+			<xs:element name="Source" type="tt:ItemListDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Set of tokens producing this message. The list may only contain SimpleItemDescription items.
+					The set of tokens identify the component within the WS-Endpoint, which is responsible for the producing the message.<br/>
+					For analytics events the token set shall include the VideoSourceConfigurationToken, the VideoAnalyticsConfigurationToken
+					and the name of the analytics module or rule.
+				</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Key" type="tt:ItemListDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Describes optional message payload parameters that may be used as key. E.g. object IDs of tracked objects are conveyed as key.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Data" type="tt:ItemListDescription" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Describes the payload of the message.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Extension" type="tt:MessageDescriptionExtension" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="IsProperty" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Must be set to true when the described Message relates to a property. An alternative term of "property" is a "state" in contrast to a pure event, which contains relevant information for only a single point in time.<br/>Default is false.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="MessageDescriptionExtension">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="ItemListDescription">
+		<xs:annotation>
+			<xs:documentation>
+			Describes a list of items. Each item in the list shall have a unique name.
+			The list is designed as linear structure without optional or unbounded elements.
+			Use ElementItems only when complex structures are inevitable.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SimpleItemDescription" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Description of a simple item. The type must be of cathegory simpleType (xs:string, xs:integer, xs:float, ...).</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Item name. Must be unique within a list.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Type" type="xs:QName" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElementItemDescription" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+            Description of a complex type. The Type must reference a defined type.
+          </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="Name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Item name. Must be unique within a list.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Type" type="xs:QName" use="required">
+						<xs:annotation>
+							<xs:documentation>The type of the item. The Type must reference a defined type.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Extension" type="tt:ItemListDescriptionExtension" minOccurs="0"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="ItemListDescriptionExtension">
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<!--===============================-->
+	<!--   VideoEncoderConfiguration   -->
+	<!--===============================-->
+	<xs:complexType name="VideoEncoderConfiguration">
+		<xs:complexContent>
+			<xs:extension base="tt:ConfigurationEntity">
+				<xs:sequence>
+					<xs:element name="Encoding" type="tt:VideoEncoding">
+						<xs:annotation>
+							<xs:documentation>Used video codec, either Jpeg, H.264 or Mpeg4</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Resolution" type="tt:VideoResolution">
+						<xs:annotation>
+							<xs:documentation>Configured video resolution</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Quality" type="xs:float">
+						<xs:annotation>
+							<xs:documentation>Relative value for the video quantizers and the quality of the video. A high value within supported quality range means higher quality</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RateControl" type="tt:VideoRateControl" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Optional element to configure rate control related parameters.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MPEG4" type="tt:Mpeg4Configuration" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Optional element to configure Mpeg4 related parameters.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="H264" type="tt:H264Configuration" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Optional element to configure H.264 related parameters.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Multicast" type="tt:MulticastConfiguration">
+						<xs:annotation>
+							<xs:documentation>Defines the multicast settings that could be used for video streaming.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SessionTimeout" type="xs:duration">
+						<xs:annotation>
+							<xs:documentation>The rtsp session timeout for the related video stream</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>   <!-- first Vendor then ONVIF -->
+				</xs:sequence>
+				<xs:attribute name="GuaranteedFrameRate" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>
+							A value of true indicates that frame rate is a fixed value rather than an upper limit,
+							and that the video encoder shall prioritize frame rate over all other adaptable
+							configuration values such as bitrate.  Default is false.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute processContents="lax"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:simpleType name="VideoEncoding">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="JPEG"/>
+			<xs:enumeration value="MPEG4"/>
+			<xs:enumeration value="H264"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="Mpeg4Profile">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SP"/>
+			<xs:enumeration value="ASP"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="H264Profile">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Baseline"/>
+			<xs:enumeration value="Main"/>
+			<xs:enumeration value="Extended"/>
+			<xs:enumeration value="High"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:complexType name="VideoResolution">
+		<xs:sequence>
+			<xs:element name="Width" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Number of the columns of the Video image.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Height" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Number of the lines of the Video image.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="VideoRateControl">
+		<xs:sequence>
+			<xs:element name="FrameRateLimit" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Maximum output framerate in fps. If an EncodingInterval is provided the resulting encoded framerate will be reduced by the given factor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EncodingInterval" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Interval at which images are encoded and transmitted. (A value of 1 means that every frame is encoded, a value of 2 means that every 2nd frame is encoded ...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitrateLimit" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>the maximum output bitrate in kbps</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Mpeg4Configuration">
+		<xs:sequence>
+			<xs:element name="GovLength" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Determines the interval in which the I-Frames will be coded. An entry of 1 indicates I-Frames are continuously generated. An entry of 2 indicates that every 2nd image is an I-Frame, and 3 only every 3rd frame, etc. The frames in between are coded as P or B Frames.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mpeg4Profile" type="tt:Mpeg4Profile">
+				<xs:annotation>
+					<xs:documentation>the Mpeg4 profile, either simple profile (SP) or advanced simple profile (ASP)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="H264Configuration">
+		<xs:sequence>
+			<xs:element name="GovLength" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Group of Video frames length. Determines typically the interval in which the I-Frames will be coded. An entry of 1 indicates I-Frames are continuously generated. An entry of 2 indicates that every 2nd image is an I-Frame, and 3 only every 3rd frame, etc. The frames in between are coded as P or B Frames.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="H264Profile" type="tt:H264Profile">
+				<xs:annotation>
+					<xs:documentation>the H.264 profile, either baseline, main, extended or high</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="VideoEncoderConfigurationOptions">
+		<xs:sequence>
+			<xs:element name="QualityRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Range of the quality values. A high value means higher quality.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="JPEG" type="tt:JpegOptions" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional JPEG encoder settings ranges (See also Extension element).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MPEG4" type="tt:Mpeg4Options" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional MPEG-4 encoder settings ranges (See also Extension element).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="H264" type="tt:H264Options" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional H.264 encoder settings ranges (See also Extension element).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Extension" type="tt:VideoEncoderOptionsExtension" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="GuaranteedFrameRateSupported" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>
+					Indicates the support for the GuaranteedFrameRate attribute on the VideoEncoderConfiguration element.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="VideoEncoderOptionsExtension">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="JPEG" type="tt:JpegOptions2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional JPEG encoder settings ranges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MPEG4" type="tt:Mpeg4Options2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional MPEG-4 encoder settings ranges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="H264" type="tt:H264Options2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional H.264 encoder settings ranges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Extension" type="tt:VideoEncoderOptionsExtension2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="VideoEncoderOptionsExtension2">
+		<xs:sequence>
+			<xs:any namespace="##targetNamespace" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="JpegOptions">
+		<xs:sequence>
+			<xs:element name="ResolutionsAvailable" type="tt:VideoResolution" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of supported image sizes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameRateRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported frame rate in fps (frames per second).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EncodingIntervalRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported encoding interval range. The encoding interval corresponds to the number of frames devided by the encoded frames. An encoding interval value of "1" means that all frames are encoded.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="JpegOptions2">
+		<xs:complexContent>
+			<xs:extension base="tt:JpegOptions">
+				<xs:sequence>
+					<xs:element name="BitrateRange" type="tt:IntRange">
+						<xs:annotation>
+							<xs:documentation>Supported range of encoded bitrate in kbps.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>   <!-- first Vendor then ONVIF -->
+				</xs:sequence>
+				<xs:anyAttribute processContents="lax"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Mpeg4Options">
+		<xs:sequence>
+			<xs:element name="ResolutionsAvailable" type="tt:VideoResolution" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of supported image sizes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovLengthRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported group of Video frames length. This value typically corresponds to the I-Frame distance.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameRateRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported frame rate in fps (frames per second).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EncodingIntervalRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported encoding interval range. The encoding interval corresponds to the number of frames devided by the encoded frames. An encoding interval value of "1" means that all frames are encoded.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mpeg4ProfilesSupported" type="tt:Mpeg4Profile" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of supported MPEG-4 profiles.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="Mpeg4Options2">
+		<xs:complexContent>
+			<xs:extension base="tt:Mpeg4Options">
+				<xs:sequence>
+					<xs:element name="BitrateRange" type="tt:IntRange">
+						<xs:annotation>
+							<xs:documentation>Supported range of encoded bitrate in kbps.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>   <!-- first Vendor then ONVIF -->
+				</xs:sequence>
+				<xs:anyAttribute processContents="lax"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="H264Options">
+		<xs:sequence>
+			<xs:element name="ResolutionsAvailable" type="tt:VideoResolution" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of supported image sizes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovLengthRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported group of Video frames length. This value typically corresponds to the I-Frame distance.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameRateRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported frame rate in fps (frames per second).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EncodingIntervalRange" type="tt:IntRange">
+				<xs:annotation>
+					<xs:documentation>Supported encoding interval range. The encoding interval corresponds to the number of frames devided by the encoded frames. An encoding interval value of "1" means that all frames are encoded.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="H264ProfilesSupported" type="tt:H264Profile" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of supported H.264 profiles.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<xs:complexType name="H264Options2">
+		<xs:complexContent>
+			<xs:extension base="tt:H264Options">
+				<xs:sequence>
+					<xs:element name="BitrateRange" type="tt:IntRange">
+						<xs:annotation>
+							<xs:documentation>Supported range of encoded bitrate in kbps.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>   <!-- first Vendor then ONVIF -->
+				</xs:sequence>
+				<xs:anyAttribute processContents="lax"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--===============================-->
+	<!--      Media Related Types      -->
+	<!--===============================-->
+	<!--===============================-->
+	<xs:simpleType name="IPType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IPv4"/>
+			<xs:enumeration value="IPv6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--===============================-->
+	<xs:simpleType name="IPv4Address">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<!--===============================-->
+	<!--===============================-->
+	<xs:simpleType name="IPv6Address">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<!--===============================-->
+	<!--===============================-->
+	<xs:complexType name="IPAddress">
+		<xs:sequence>
+			<xs:element name="Type" type="tt:IPType">
+				<xs:annotation>
+					<xs:documentation>Indicates if the address is an IPv4 or IPv6 address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPv4Address" type="tt:IPv4Address" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IPv4 address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPv6Address" type="tt:IPv6Address" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IPv6 address</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--===============================-->
+	<!--===============================-->
+	<xs:complexType name="MulticastConfiguration">
+		<xs:sequence>
+			<xs:element name="Address" type="tt:IPAddress">
+				<xs:annotation>
+					<xs:documentation>The multicast address (if this address is set to 0 no multicast streaming is enaled)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Port" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>The RTP mutlicast destination port. A device may support RTCP. In this case the port value shall be even to allow the corresponding RTCP stream to be mapped to the next higher (odd) destination port number as defined in the RTSP specification.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TTL" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>In case of IPv6 the TTL value is assumed as the hop limit. Note that for IPV6 and administratively scoped IPv4 multicast the primary use for hop limit / TTL is to prevent packets from (endlessly) circulating and not limiting scope. In these cases the address contains the scope.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AutoStart" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Read only property signalling that streaming is persistant. Use the methods StartMulticastStreaming and StopMulticastStreaming to switch its state.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>   <!-- first Vendor then ONVIF -->
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<!--===============================-->
+	<xs:complexType name="MediaUri">
+		<xs:sequence>
+			<xs:element name="Uri" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>Stable Uri to be used for requesting the media stream</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InvalidAfterConnect" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates if the Uri is only valid until the connection is established. The value shall be set to "false".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InvalidAfterReboot" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates if the Uri is invalid after a reboot of the device. The value shall be set to "false".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Timeout" type="xs:duration">
+				<xs:annotation>
+					<xs:documentation>Duration how long the Uri is valid. This parameter shall be set to PT0S to indicate that this stream URI is indefinitely valid even if the profile changes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>   <!-- first Vendor then ONVIF -->
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<!--===============================-->
+	<!--   End, Media Related Types    -->
+	<!--===============================-->
+	<!--===============================-->
+</xs:schema>
