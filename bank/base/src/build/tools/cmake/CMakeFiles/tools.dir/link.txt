@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror  -shared -Wl,-soname,libtools.so -o libtools.so CMakeFiles/tools.dir/__/tools.c.o 

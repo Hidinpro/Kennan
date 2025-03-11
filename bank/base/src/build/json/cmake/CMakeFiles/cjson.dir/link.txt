@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror  -shared -Wl,-soname,libcjson.so -o libcjson.so CMakeFiles/cjson.dir/__/cJSON.c.o -lm 

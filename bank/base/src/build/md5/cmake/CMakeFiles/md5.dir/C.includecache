@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/md5/md5.c
+string.h
+-
+unistd.h
+-
+sys/stat.h
+-
+sys/types.h
+-
+fcntl.h
+-
+md5.h
+/home/zhihzen/base/src/md5/md5.h
+
+/home/zhihzen/base/src/md5/md5.h
+stdio.h
+-
+stdint.h
+-
+

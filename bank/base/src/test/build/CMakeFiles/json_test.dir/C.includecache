@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/test/cJSON_test.c
+stdio.h
+-
+stdlib.h
+-
+cJSON.h
+/home/zhihzen/base/src/test/cJSON.h
+
+/home/zhihzen/base/src/test/cmake/../../../include/cJSON.h
+

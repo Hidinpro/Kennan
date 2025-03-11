@@ -1,0 +1,12 @@
+/home/zhihzen/base/src/test/build/CMakeFiles/list_install_components.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/list_test.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/sort_test.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/md5_test.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/tools_test.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/rebuild_cache.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/tree_test.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/json_test.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/install/local.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/install.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/install/strip.dir
+/home/zhihzen/base/src/test/build/CMakeFiles/edit_cache.dir

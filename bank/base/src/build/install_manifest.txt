@@ -1,0 +1,4 @@
+/home/zhihzen/base/src/build/../../lib/libtools.so
+/home/zhihzen/base/src/build/../../include/tools.h
+/home/zhihzen/base/src/build/../../lib/libmsg.so
+/home/zhihzen/base/src/build/../../include/msg_queue.h

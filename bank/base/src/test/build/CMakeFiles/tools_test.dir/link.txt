@@ -1,0 +1,1 @@
+gcc  -Wall -Werror   CMakeFiles/tools_test.dir/home/zhihzen/base/src/test/tools_test.c.o  -o tools_test  -L/home/zhihzen/base/src/test/cmake/../../../lib -lm -lcjson -ldsa -lmd5 -ltools -Wl,-rpath,/home/zhihzen/base/src/test/cmake/../../../lib: 

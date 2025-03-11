@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhihzen/base/src/tools/tools.c
+assert.h
+-
+tools.h
+/home/zhihzen/base/src/tools/tools.h
+
+/home/zhihzen/base/src/tools/tools.h
+stdio.h
+-
+getch.h
+-
+string.h
+-
+stdbool.h
+-
+stdlib.h
+-
+unistd.h
+-
+

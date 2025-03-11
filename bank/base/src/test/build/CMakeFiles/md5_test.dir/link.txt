@@ -1,0 +1,1 @@
+gcc  -Wall -Werror   CMakeFiles/md5_test.dir/home/zhihzen/base/src/test/md5_test.c.o  -o md5_test  -L/home/zhihzen/base/src/test/cmake/../../../lib -lm -lcjson -ldsa -lmd5 -ltools -Wl,-rpath,/home/zhihzen/base/src/test/cmake/../../../lib: 

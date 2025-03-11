@@ -1,0 +1,1 @@
+gcc  -Wall -Werror   CMakeFiles/sort_test.dir/home/zhihzen/base/src/test/sort_test.c.o  -o sort_test  -L/home/zhihzen/base/src/test/cmake/../../../lib -lm -lcjson -ldsa -lmd5 -ltools -Wl,-rpath,/home/zhihzen/base/src/test/cmake/../../../lib: 

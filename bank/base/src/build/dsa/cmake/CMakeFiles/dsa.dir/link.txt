@@ -1,0 +1,1 @@
+gcc  -fPIC -Wall -Werror  -shared -Wl,-soname,libdsa.so -o libdsa.so CMakeFiles/dsa.dir/__/tree.c.o CMakeFiles/dsa.dir/__/list.c.o CMakeFiles/dsa.dir/__/sort.c.o CMakeFiles/dsa.dir/__/queue.c.o CMakeFiles/dsa.dir/__/stack.c.o CMakeFiles/dsa.dir/__/query.c.o 

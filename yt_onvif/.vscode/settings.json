@@ -1,0 +1,26 @@
+{
+    "files.associations": {
+        "random": "c",
+        "onvif_comm.h": "c",
+        "array": "c",
+        "md5.h": "c",
+        "functional": "c",
+        "onvif_get_apabilities.h": "c",
+        "in.h": "c",
+        "sha.h": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c",
+        "memory": "c",
+        "optional": "c",
+        "system_error": "c",
+        "bio.h": "c",
+        "stdarg.h": "c",
+        "onvif_encode.h": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "stdlib.h": "c",
+        "onvif_capabilities.h": "c",
+        "string.h": "c"
+    }
+}

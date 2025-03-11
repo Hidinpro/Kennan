@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../test/cmake/../../../include/tree.h
+stdio.h
+-
+
+/home/zhihzen/base/src/test/tree_test.c
+stdlib.h
+-
+string.h
+-
+tree.h
+/home/zhihzen/base/src/test/tree.h
+
